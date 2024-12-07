@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa sinh viên</title>
+</head>
+<body>
+<h1>Sửa thông tin sinh viên</h1>
+
+<form action="/admin/students/edit" method="post">
+    <input type="hidden" name="studentId" th:value="${student.studentId}" />
+    <input type="text" name="name" th:value="${student.name}" placeholder="Tên" required />
+    <input type="text" name="birthday" th:value="${student.birthday}" placeholder="Ngày sinh" required />
+    <input type="text" name="gender" th:value="${student.gender}" placeholder="Giới tính" required />
+    <input type="text" name="address" th:value="${student.address}" placeholder="Địa chỉ" required />
+    <input type="text" name="phone" th:value="${student.phone}" placeholder="Số điện thoại" required />
+    <input type="email" name="email" th:value="${student.email}" placeholder="Email" required />
+    <button type="submit">Cập nhật thông tin</button>
+</form>
+
+<a href="/admin/students">Quay lại</a>
+</body>
+</html>

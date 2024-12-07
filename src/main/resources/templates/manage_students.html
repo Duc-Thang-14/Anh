@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý Sinh viên</title>
+</head>
+<body>
+<h1>Quản lý Sinh viên</h1>
+
+<h2>Danh sách sinh viên</h2>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Tên</th>
+    <th>Ngày sinh</th>
+    <th>Giới tính</th>
+    <th>Địa chỉ</th>
+    <th>Số điện thoại</th>
+    <th>Email</th>
+    <th>Hành động</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="student : ${students}">
+    <td th:text="${student.studentId}"></td>
+    <td th:text="${student.name}"></td>
+    <td th:text="${student.birthday}"></td>
+    <td th:text="${student.gender}"></td>
+    <td th:text="${student.address}"></td>
+    <td th:text="${student.phone}"></td>
+    <td th:text="${student.email}"></td>
+    <td>
+      <!-- Form để xóa sinh viên -->
+      <form action="/admin/students/delete/{student.studentId}" method="post" style="display:inline;">
+        <button type="submit" onclick="return confirm('Xóa sinh viên này?')">Xóa</button>
+      </form>
+
+      <!-- Liên kết để chỉnh sửa sinh viên -->
+      <a th:href="@{/admin/students/edit/{id}(id=${student.studentId})}">Sửa</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Form thêm sinh viên mới -->
+<h2>Thêm sinh viên mới</h2>
+<form action="/admin/students/add" method="post">
+  <input type="text" name="name" placeholder="Tên" required />
+  <input type="text" name="birthday" placeholder="Ngày sinh" required />
+  <input type="text" name="gender" placeholder="Giới tính" required />
+  <input type="text" name="address" placeholder="Địa chỉ" required />
+  <input type="text" name="phone" placeholder="Số điện thoại" required />
+  <input type="email" name="email" placeholder="Email" required />
+  <button type="submit">Thêm sinh viên</button>
+</form>
+</body>
+</html>
